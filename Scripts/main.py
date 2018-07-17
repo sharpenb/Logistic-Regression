@@ -19,7 +19,7 @@ n_validation = int((20/100) * n_samples)
 # plt.ylabel('Second feature')
 # plt.show()
 
-# # Extract uWaveGesture dataset
+# Extract uWaveGesture dataset
 gesture_1 = extract_gesture(1, directory)
 gesture_2 = extract_gesture(2, directory)
 gesture_3 = extract_gesture(3, directory)
@@ -31,35 +31,35 @@ gesture_8 = extract_gesture(8, directory)
 X, y = create_dataset([gesture_1, gesture_2, gesture_3, gesture_4, gesture_5, gesture_6, gesture_7, gesture_8], shuffle=True)
 print(X.shape, y.shape)
 
-# # Build logistic regression model
-# log_reg = LogisticRegression(regularization_factor=.001)
-#
-# # Training
-# X_train = X[:n_training]
-# y_train = y[:n_training]
-# X_val = X[n_training:n_training + n_validation]
-# y_val = y[n_training:n_training + n_validation]
-# training_accuracy, training_cross_entropy, validation_accuracy, validation_cross_entropy = log_reg.train_early_stopping(X_train, y_train, X_val, y_val, n_early_stopping=100, epochs=2000)
-#
-# # Test & Visualization
-# plt.plot(training_accuracy, 'b', label="Training accuracy")
-# plt.plot(validation_accuracy, 'r', label="Test accuracy")
-# plt.xlabel('Epoch')
-# plt.ylabel('Accuracy')
-# plt.show()
-#
-# plt.plot(training_cross_entropy, 'b', label="Training cross entropy")
-# plt.plot(validation_cross_entropy, 'r', label="Test cross entropy")
-# plt.xlabel('Epoch')
-# plt.ylabel('Cross entropy')
-# plt.show()
-#
-# X_test = X[n_training+n_validation:]
-# y_test = y[n_training+n_validation:]
-# print(log_reg.regularized_cross_entropy(X_test, y_test), log_reg.accuracy(X_test, y_test))
-# confusion_map = log_reg.confusion_map(X_test, y_test)
-# plt.imshow(confusion_map, cmap='Reds', interpolation='nearest')
-# plt.show()
+# Build logistic regression model
+log_reg = LogisticRegression(regularization_factor=.001)
+
+# Training
+X_train = X[:n_training]
+y_train = y[:n_training]
+X_val = X[n_training:n_training + n_validation]
+y_val = y[n_training:n_training + n_validation]
+training_accuracy, training_cross_entropy, validation_accuracy, validation_cross_entropy = log_reg.train_early_stopping(X_train, y_train, X_val, y_val, n_early_stopping=100, epochs=2000)
+
+# Test & Visualization
+plt.plot(training_accuracy, 'b', label="Training accuracy")
+plt.plot(validation_accuracy, 'r', label="Test accuracy")
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.show()
+
+plt.plot(training_cross_entropy, 'b', label="Training cross entropy")
+plt.plot(validation_cross_entropy, 'r', label="Test cross entropy")
+plt.xlabel('Epoch')
+plt.ylabel('Cross entropy')
+plt.show()
+
+X_test = X[n_training+n_validation:]
+y_test = y[n_training+n_validation:]
+print(log_reg.regularized_cross_entropy(X_test, y_test), log_reg.accuracy(X_test, y_test))
+confusion_map = log_reg.confusion_map(X_test, y_test)
+plt.imshow(confusion_map, cmap='Reds', interpolation='nearest')
+plt.show()
 
 training_accuracies = []
 training_cross_entropies = []
