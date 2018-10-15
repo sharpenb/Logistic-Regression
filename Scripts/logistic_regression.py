@@ -26,8 +26,6 @@ class LogisticRegression:
             self.b = b
         training_accuracy = []
         training_cross_entropy = []
-        validation_accuracy = []
-        validation_cross_entropy = []
 
         for e in range(epochs):
             grad_W, grad_b = self.gradients(X_train, y_train)
